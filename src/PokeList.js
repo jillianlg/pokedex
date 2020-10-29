@@ -4,7 +4,7 @@ import PokeItem from './PokeItem.js';
 export default class PokeList extends React.Component {
     render() {
         return (
-            <div className="pokemon-group">
+            <div className="pokemon-cards">
                 {
                     this.props.pokemonProp.filter((item) => {
                         if (!this.props.abilityProp) return true;
@@ -15,6 +15,18 @@ export default class PokeList extends React.Component {
                     .filter((item) => {
                         if (!this.props.hiddenProp) return true;
                         if (item.ability_hidden === this.props.hiddenProp) return true;
+                        return false;
+                    })
+
+                    .filter((item) => {
+                        if (!this.props.submitProp) return true;
+                        if (item.pokemon === this.props.submitProp) return true;
+                        return false;
+                    })
+
+                    .filter((item) => {
+                        if (!this.props.changeProp) return true;
+                        if (item.pokemon === this.props.changeProp) return true;
                         return false;
                     })
 

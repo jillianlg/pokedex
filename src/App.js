@@ -5,11 +5,14 @@ import Header from './Header.js';
 import PokeList from './PokeList.js';
 import pokemonData from './Data.js';
 import Dropdown from './Dropdown.js';
+import SearchBar from './Search.js';
 
 export default class App extends React.Component {
   state = {
       ability: '',
       hidden: '',
+      submit: '',
+      change: '',
   }
   
   handleChangeAbility = (e) => {
@@ -23,6 +26,19 @@ export default class App extends React.Component {
       hidden: e.target.value,
     })
 }
+handleSubmit = (e) => {
+  e.preventDefault()  
+  this.setState({
+      submit: this.state.change,
+    })
+}
+
+handleChange = (e) => {
+    e.preventDefault()  
+    this.setState({
+      change: e.target.value,
+    })
+}
 
   render() {
     return (
@@ -31,10 +47,13 @@ export default class App extends React.Component {
         <Dropdown 
         handleChangeAbility={this.handleChangeAbility}
         handleChangeHidden={this.handleChangeHidden} />
+        <SearchBar 
+        handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
         <PokeList 
         pokemonProp={pokemonData} 
         abilityProp={this.state.ability}
-        hiddenProp={this.state.hidden}/>
+        hiddenProp={this.state.hidden}
+        submitProp={this.state.submit} />
       </div>
     )
   }
