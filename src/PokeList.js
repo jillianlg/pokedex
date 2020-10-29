@@ -11,11 +11,20 @@ export default class PokeList extends React.Component {
                         if (item.ability_1 === this.props.abilityProp) return true;
                         return false;
                     })
+
+                    .filter((item) => {
+                        if (!this.props.hiddenProp) return true;
+                        if (item.ability_hidden === this.props.hiddenProp) return true;
+                        return false;
+                    })
+
                     .map(pokemon => {
                     return <PokeItem 
                     name={pokemon.pokemon} 
                     url={pokemon.url_image} 
-                    ability={pokemon.ability_1} />
+                    ability={pokemon.ability_1} 
+                    hidden={pokemon.ability_hidden} 
+                    shape={pokemon.shape}/>
                     })
                 }
             </div>
