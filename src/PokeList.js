@@ -1,0 +1,25 @@
+import React from 'react'
+import PokeItem from './PokeItem.js';
+
+export default class PokeList extends React.Component {
+    render() {
+        return (
+            <div className="pokemon-group">
+                {
+                    this.props.pokemonProp.filter((item) => {
+                        if (!this.props.abilityProp) return true;
+                        if (item.ability_1 === this.props.abilityProp) return true;
+                        return false;
+                    })
+                    .map(pokemon => {
+                    return <PokeItem 
+                    name={pokemon.pokemon} 
+                    url={pokemon.url_image} 
+                    ability={pokemon.ability_1} />
+                    })
+                }
+            </div>
+        )
+    }
+}
+
