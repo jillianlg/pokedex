@@ -1,10 +1,11 @@
 import React from 'react'
 import PokeItem from './PokeItem.js';
+import './PokeList.css';
 
 export default class PokeList extends React.Component {
     render() {
         return (
-            <div className="pokemon-cards">
+            <div className="poke-cards">
                 {
                     this.props.pokemonProp.filter((item) => {
                         if (!this.props.abilityProp) return true;
