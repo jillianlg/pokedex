@@ -44,8 +44,9 @@ export default class PokeList extends React.Component {
                             return false;
                         })
 
-                        .map(pokemon => {
+                        .map((pokemon, i) => {
                         return <PokeItem 
+                        key = {i}
                         name={pokemon.pokemon} 
                         url={pokemon.url_image} 
                         ability={pokemon.ability_1} 

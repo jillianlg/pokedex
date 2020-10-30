@@ -2,16 +2,9 @@
 import React from 'react'
 import './App.css';
 import PokeList from './PokeList.js';
-// import Dropdown from './Dropdown.js';
+import Dropdown from './Dropdown.js';
 import SearchBar from './Search.js';
 import request from 'superagent';
-
-// 0) move DropDown into ListPage.js (aka original App.js)
-// 1) move filter state to ListPage.js (aka original App.js)
-// 2) give DropDown the debit card to change ListPage.js (aka original App.js) state
-// 3) give WolfList the filter (since it's the component that needs it)
-
-// ListPage.js (aka original App.js) is a container component. it manages state and passes it to children.
 
 export default class App extends React.Component {
   state = {
@@ -33,7 +26,7 @@ export default class App extends React.Component {
   }
 
   onTextChange = (e) => {
-      this.setState({ pokemon: e.target.value })}
+      this.setState({ filter: e.target.value })}
 
   onChangeAbility = (e) => {
       this.setState({ ability: e.target.value })}
@@ -42,21 +35,31 @@ export default class App extends React.Component {
     this.setState({ hidden: e.target.value })}
 
   searchPoke = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}&perPage=1000`)
     
       this.setState({ pokeData: response.body.results })
   }
 
+  searchAbility = async () => {
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.ability}&perPage=1000`)
+    
+      this.setState({ ability: response.body.results, pokeData: response.body.results })
+  }
 
-
+  searchHidden = async () => {
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.hidden}&perPage=1000`)
+    
+      this.setState({ hidden: response.body.results, pokeData: response.body.results })
+  }
 
 
   render() {
+    console.log(this.state.ability);
     return (
       <div>
-        {/* <Dropdown 
+        <Dropdown 
         onChangeAbility={this.onChangeAbility}
-        onChangeHidden={this.onChangeHidden} /> */}
+        onChangeHidden={this.onChangeHidden} />
         <SearchBar 
         onButtonClick={this.onButtonClick} onTextChange={this.onTextChange} />
         <PokeList 

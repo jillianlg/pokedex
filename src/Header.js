@@ -7,14 +7,13 @@ export default class Header extends React.Component {
         return (
             <div className="header">
                 <h1 className="header-title">Digital Pokemon Roll-a-dex </h1>
-                <ul className='nav'>
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/list" >List</Link>
-                        
-                    </li>
+            <ul className='nav'>
+                <li>
+                    <Link to="/">Home</Link>
+                </li>
+                <li>
+                    <Link to="/list" >List</Link>
+                </li>
             </ul>
             </div>
         )
