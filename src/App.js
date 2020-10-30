@@ -1,60 +1,34 @@
-
-import React from 'react'
+import React, { Component } from 'react'
 import './App.css';
-import Header from './Header.js';
-import PokeList from './PokeList.js';
-import pokemonData from './Data.js';
-import Dropdown from './Dropdown.js';
-import SearchBar from './Search.js';
+import {
+    BrowserRouter as Router, 
+    Route, 
+    Switch,
+} from 'react-router-dom';
+import ListPage from './ListPage.js';
+import Header from './Header';
+import HomePage from './HomePage';
 
-export default class App extends React.Component {
-  state = {
-      ability: '',
-      hidden: '',
-      submit: '',
-      change: '',
-  }
-  
-  handleChangeAbility = (e) => {
-      this.setState({
-        ability: e.target.value,
-      })
-  }
-
-  handleChangeHidden = (e) => {
-    this.setState({
-      hidden: e.target.value,
-    })
-}
-handleSubmit = (e) => {
-  e.preventDefault()  
-  this.setState({
-      submit: this.state.change,
-    })
-}
-
-handleChange = (e) => {
-    e.preventDefault()  
-    this.setState({
-      change: e.target.value,
-    })
-}
-
-  render() {
-    return (
-      <div>
-        <Header />
-        <Dropdown 
-        handleChangeAbility={this.handleChangeAbility}
-        handleChangeHidden={this.handleChangeHidden} />
-        <SearchBar 
-        handleSubmit={this.handleSubmit} handleChange={this.handleChange} />
-        <PokeList 
-        pokemonProp={pokemonData} 
-        abilityProp={this.state.ability}
-        hiddenProp={this.state.hidden}
-        submitProp={this.state.submit} />
-      </div>
-    )
-  }
+export default class App extends Component {
+    render() {
+        return (
+            <div>
+                <Router>
+                    <Header />
+                    <Switch>
+                    <Route 
+                        path="/" 
+                        exact
+                        render={(routerProps) => <HomePage {...routerProps} />} 
+                    />
+                    <Route 
+                        path="/list" 
+                        exact
+                        render={(routerProps) => <ListPage {...routerProps} />} 
+                    />
+                    </Switch>
+                </Router>
+            </div>
+        )
+    }
 }
