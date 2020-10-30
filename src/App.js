@@ -6,7 +6,6 @@ import {
     Switch,
 } from 'react-router-dom';
 import ListPage from './ListPage.js';
-import FetchPage from './FetchPage.js';
 import Header from './Header';
 import HomePage from './HomePage';
 
@@ -26,11 +25,6 @@ export default class App extends Component {
                         path="/list" 
                         exact
                         render={(routerProps) => <ListPage {...routerProps} />} 
-                    />
-                    <Route 
-                        path="/fetch" 
-                        exact
-                        render={(routerProps) => <FetchPage {...routerProps} />} 
                     />
                     </Switch>
                 </Router>

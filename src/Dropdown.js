@@ -5,7 +5,7 @@ export default class Dropdown extends React.Component {
     render() {
         return (
             <div className="drop-down">
-                <select onChange={this.props.handleChangeAbility}>
+                <select onChange={this.props.onChangeAbility}>
                     <option value="">Abilities</option>
                     <option value="overgrow">Overgrow</option>
                     <option value="blaze">Blaze</option>
@@ -15,7 +15,7 @@ export default class Dropdown extends React.Component {
                     <option value="swarm">Swarm</option>
                     <option value="keen-eye">Keen Eye</option>
                 </select>
-                <select onChange={this.props.handleChangeHidden}>
+                <select onChange={this.props.onChangeHidden}>
                     <option value="">Hidden Abilities</option>
                     <option value="chlorophyll">Chlorophyll</option>
                     <option value="solar-power">Solar Power</option>

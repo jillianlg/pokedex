@@ -3,11 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #55A3AB;
+    height: 150px;
+    width: auto;
+    margin-bottom: 10px;
 }
 
 .header-title {
     font-weight: 900;
     font-size: 50px;
+    color: #DF807E;
 }
 
 .nav {
@@ -16,15 +21,17 @@
     justify-content: space-evenly;
     align-items: center;
     list-style: none;
-    background-color: #3b4cca;
+    /* background-color: #DF807E;
     height: 50px;
     width: 500px;
-    border-radius: 10px;
-
+    border-radius: 10px; */
 }
 
 li {
-    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     text-align: center;
     height: 25px;
     width: 55px;
