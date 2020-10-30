@@ -6,13 +6,6 @@ import Dropdown from './Dropdown.js';
 import SearchBar from './Search.js';
 import request from 'superagent';
 
-// 0) move DropDown into ListPage.js (aka original App.js)
-// 1) move filter state to ListPage.js (aka original App.js)
-// 2) give DropDown the debit card to change ListPage.js (aka original App.js) state
-// 3) give WolfList the filter (since it's the component that needs it)
-
-// ListPage.js (aka original App.js) is a container component. it manages state and passes it to children.
-
 export default class App extends React.Component {
   state = {
       filter:'',
