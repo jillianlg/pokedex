@@ -28,7 +28,16 @@ export default class App extends React.Component {
         console.log(this.state.ability);
         return (
             <div className="fetch">
-                <h1>{this.props.match.params.pokeName}POKEMON!</h1>
+                this.props.pokemonData.length === 0
+                ? <iframe
+                    src="https://giphy.com/embed/xTk9ZvMnbIiIew7IpW" 
+                    title={Math.random()} 
+                    width="480" 
+                    height="480" 
+                    frameBorder="0" 
+                    className="giphy-embed" 
+                    allowFullScreen/>
+                :  <h1>{this.props.match.params.pokeName}POKEMON!</h1>
                 <Dropdown
                     onChangeAbility={this.onChangeAbility}
                     onChangeHidden={this.onChangeHidden} />

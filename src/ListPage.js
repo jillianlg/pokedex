@@ -35,19 +35,19 @@ export default class App extends React.Component {
     this.setState({ hidden: e.target.value })}
 
   searchPoke = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}&perPage=1000`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}&perPage=20`)
     
       this.setState({ pokeData: response.body.results })
   }
 
   searchAbility = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.ability}&perPage=1000`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.ability}&perPage=20`)
     
       this.setState({ ability: response.body.results, pokeData: response.body.results })
   }
 
   searchHidden = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.hidden}&perPage=1000`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.hidden}&perPage=20`)
     
       this.setState({ hidden: response.body.results, pokeData: response.body.results })
   }
