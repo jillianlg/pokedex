@@ -35,10 +35,18 @@ export default class App extends React.Component {
     this.setState({ hidden: e.target.value })}
 
   searchPoke = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}&perPage=20`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}&perPage=20`)
     
-      this.setState({ pokeData: response.body.results })
+      this.setState({ pokeData: response.body.results, 
+      loading: false,
+    })
   }
+
+  // searchPoke = async () => {
+  //   const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}&perPage=20`)
+    
+  //     this.setState({ pokeData: response.body.results })
+  // }
 
   searchAbility = async () => {
     const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.ability}&perPage=20`)
@@ -56,12 +64,14 @@ export default class App extends React.Component {
   render() {
     
     return (
-      <div>
+      <div className="user-input">
         <Dropdown 
         onChangeAbility={this.onChangeAbility}
         onChangeHidden={this.onChangeHidden} />
         <SearchBar 
         onButtonClick={this.onButtonClick} onTextChange={this.onTextChange} />
+        <button>Prev</button>
+        <button>Next</button>
         <PokeList 
         pokemonProp={this.state.pokeData} 
         abilityProp={this.state.ability}
