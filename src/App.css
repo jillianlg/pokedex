@@ -6,3 +6,25 @@ body {
   margin: 10px;
   background-color: #A2D7D5;
 }
+
+@media (max-width: 600px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: #336E8C;
+  }
+}
+
+@media (min-width: 900px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: #DFE5F2;
+  }
+}
