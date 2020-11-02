@@ -13,7 +13,9 @@ export default class App extends React.Component {
       hidden: '',
       submit: '',
       change: '',
-      pokeData: []
+      pokeData: [],
+      pageNumber: 1,
+      count: '',
   }
 
   componentDidMount = async () => {
@@ -34,12 +36,30 @@ export default class App extends React.Component {
   onChangeHidden = (e) => {
     this.setState({ hidden: e.target.value })}
 
+    handleIncrement = async () => {
+      await this.setState({ 
+          pageNumber: this.state.pageNumber + 1, 
+      })
+
+      await this.searchPoke();
+  }
+
+  handleDecrement = async () => {
+      await this.setState({ 
+          pageNumber: this.state.pageNumber - 1, 
+      })
+
+      await this.searchPoke();
+  }
+
   searchPoke = async () => {
     const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}&perPage=20`)
     
       this.setState({ pokeData: response.body.results, 
-      loading: false,
+      loading: false, count: response.body.count
     })
+
+
   }
 
   // searchPoke = async () => {
@@ -70,8 +90,26 @@ export default class App extends React.Component {
         onChangeHidden={this.onChangeHidden} />
         <SearchBar 
         onButtonClick={this.onButtonClick} onTextChange={this.onTextChange} />
-        <button>Prev</button>
-        <button>Next</button>
+      <div className="paging-style">
+              Page {this.state.pageNumber} out of {Math.ceil(this.state.count / 20)}
+          </div>
+          <div>
+              {this.state.count} total pokemon in query 
+          </div>
+          {
+            <button 
+              disabled={this.state.pageNumber === 1} 
+              onClick={this.handleDecrement}>
+              Prev
+          </button>
+          }
+          {
+          <button 
+              onClick={this.handleIncrement} 
+              disabled={this.state.pageNumber === Math.ceil(this.state.count / 20)}>
+              Next
+          </button>
+          }
         <PokeList 
         pokemonProp={this.state.pokeData} 
         abilityProp={this.state.ability}
