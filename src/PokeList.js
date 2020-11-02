@@ -32,7 +32,7 @@ export default class PokeList extends React.Component {
                         <Link to= {`/pokeData/${pokemon._id}`}>
                         <PokeItem 
                         key = {i}
-                        name={pokemon.pokemon} 
+                        name={pokemon.pokemon}
                         url={pokemon.url_image} 
                         ability={pokemon.ability_1} 
                         hidden={pokemon.ability_hidden} 
