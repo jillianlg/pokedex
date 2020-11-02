@@ -13,7 +13,9 @@ export default class App extends React.Component {
       hidden: '',
       submit: '',
       change: '',
-      pokeData: []
+      pokeData: [],
+      pageNumber: 1,
+      count: '',
   }
 
   componentDidMount = async () => {
@@ -34,34 +36,74 @@ export default class App extends React.Component {
   onChangeHidden = (e) => {
     this.setState({ hidden: e.target.value })}
 
+    handleIncrement = async () => {
+      await this.setState({ 
+          pageNumber: this.state.pageNumber + 1, 
+      })
+
+      await this.searchPoke();
+  }
+
+  handleDecrement = async () => {
+      await this.setState({ 
+          pageNumber: this.state.pageNumber - 1, 
+      })
+
+      await this.searchPoke();
+  }
+
   searchPoke = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}&perPage=1000`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.pageNumber}&perPage=20`)
     
-      this.setState({ pokeData: response.body.results })
+      this.setState({ pokeData: response.body.results, 
+      loading: false, count: response.body.count
+    })
+
+
   }
 
   searchAbility = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.ability}&perPage=1000`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.ability}&perPage=20`)
     
       this.setState({ ability: response.body.results, pokeData: response.body.results })
   }
 
   searchHidden = async () => {
-    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.hidden}&perPage=1000`)
+    const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.hidden}&perPage=20`)
     
       this.setState({ hidden: response.body.results, pokeData: response.body.results })
   }
 
 
   render() {
-    console.log(this.state.ability);
+    
     return (
-      <div>
+      <div className="user-input">
         <Dropdown 
         onChangeAbility={this.onChangeAbility}
         onChangeHidden={this.onChangeHidden} />
         <SearchBar 
         onButtonClick={this.onButtonClick} onTextChange={this.onTextChange} />
+      <div className="paging-style">
+              Page {this.state.pageNumber} out of {Math.ceil(this.state.count / 20)}
+          </div>
+          <div>
+              {this.state.count} total pokemon in query 
+          </div>
+          {
+            <button 
+              disabled={this.state.pageNumber === 1} 
+              onClick={this.handleDecrement}>
+              Prev
+          </button>
+          }
+          {
+          <button 
+              onClick={this.handleIncrement} 
+              disabled={this.state.pageNumber === Math.ceil(this.state.count / 20)}>
+              Next
+          </button>
+          }
         <PokeList 
         pokemonProp={this.state.pokeData} 
         abilityProp={this.state.ability}
