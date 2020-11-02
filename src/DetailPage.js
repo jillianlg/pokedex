@@ -40,7 +40,7 @@ export default class App extends React.Component {
                         className="giphy-embed"
                         allowFullScreen />
                     : 
-                    <div>
+                    <div className="detail-poke-card">
                         {/* <Dropdown
                             onChangeAbility={this.onChangeAbility}
                             onChangeHidden={this.onChangeHidden} />
@@ -51,7 +51,10 @@ export default class App extends React.Component {
                             url={this.state.pokeData.url_image} 
                             ability={this.state.pokeData.ability_1} 
                             hidden={this.state.pokeData.ability_hidden} 
-                            shape={this.state.pokeData.shape}/>
+                            shape={this.state.pokeData.shape}
+                            egg={this.state.pokeData.egg_group_1}
+                            attack={this.state.pokeData.attack}
+                            defense={this.state.pokeData.defense}/>
                         </div>
                 
             }

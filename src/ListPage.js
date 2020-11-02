@@ -62,12 +62,6 @@ export default class App extends React.Component {
 
   }
 
-  // searchPoke = async () => {
-  //   const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.filter}&perPage=20`)
-    
-  //     this.setState({ pokeData: response.body.results })
-  // }
-
   searchAbility = async () => {
     const response = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.ability}&perPage=20`)
     

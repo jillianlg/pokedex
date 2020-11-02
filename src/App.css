@@ -35,3 +35,10 @@ body {
     background-color: #DFE5F2;
   }
 }
+
+.detail-poke-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

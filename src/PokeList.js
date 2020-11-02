@@ -36,7 +36,10 @@ export default class PokeList extends React.Component {
                         url={pokemon.url_image} 
                         ability={pokemon.ability_1} 
                         hidden={pokemon.ability_hidden} 
-                        shape={pokemon.shape}/>
+                        shape={pokemon.shape}
+                        egg={pokemon.egg_group_1}
+                        attack={pokemon.attack}
+                        defense={pokemon.defense}/>
                         </Link>)
                         })
                     }

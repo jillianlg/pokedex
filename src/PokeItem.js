@@ -13,6 +13,9 @@ export default class PokeItem extends React.Component {
                 <p className="ability">Ability: {this.props.ability}</p>
                 <p className="hidden-ability">Hidden Ability: {this.props.hidden}</p>
                 <p className="shape">Shape: {this.props.shape}</p>
+                <p className="egg">Egg: {this.props.egg}</p>
+                <p className="attack">Attack: {this.props.attack}</p>
+                <p className="defense">Defense: {this.props.defense}</p>
             </div>
         )
     }
